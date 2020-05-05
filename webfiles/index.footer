@@ -1,0 +1,18 @@
+<script>
+
+var map = L.map('map').setView([42.405, -71.167], 9);
+
+var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '<a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+
+var heat = L.heatLayer(addressPoints, {minOpacity: 1, radius: 20, maxZoom: 10, blur: 25 }).addTo(map);
+
+</script>
+<iframe src="history.html" class="history" allowtransparency="true" frameborder="0" scrolling="0" width="1000"></iframe>
+<iframe class="ghbtns" src="leaflet-heat.html"
+  allowtransparency="true" frameborder="0" scrolling="0" width="0" height="0"></iframe>
+</body>
+</html>
