@@ -1,5 +1,20 @@
 #!/bin/bash
-
+# HEAT2OSM - a Bash shell script to render heatmaps from modified sock30003
+# heatmap data
+#
+# Usage: ./heat2osm.sh [date]
+#
+# Copyright 2020 Ramon F. Kolb - licensed under the terms and conditions
+# of GPLv3. The terms and conditions of this license are included with the Github 
+# distribution of this package, and are also available here:
+# https://github.com/kx1t/ADSB-heatmap/
+#
+# The package contains parts of, and modifications or derivatives to the following:
+# Dump1090.Socket30003 by Ted Sluis: https://github.com/tedsluis/dump1090.socket30003
+# Leaflet.heat: https://leaflet.github.io/Leaflet.heat
+# Leaflet: https://github.com/Leaflet/
+# OpenStreetMap: https://www.openstreetmap.org
+# These packages may incorporate other software and license terms.
 
 
 # start defining the input and output directories and file names
@@ -25,7 +40,8 @@
 	# print HTML headers first:
 	printf "<html>\n\t<head></head>\n\t<body>\n\t\t" > $HISTFILE
 	printf "<p>Historical data: " >>$HISTFILE
-	
+	# First write a link to the latest heatmap:
+	printf "<a href=\"index.html\" target=\"_top\">Latest</a> - " >>$HISTFILE
 	# loop through the existing files. Note - if you change the file format, make sure to yodate the arguments in the line
 	# right below. Right now, it lists all files that have the index-20* format (index200504.html, etc.), and then
 	# picks the newest 7, reverses the strings to capture the characters 6-11 from the right, which contain the date (200504)
