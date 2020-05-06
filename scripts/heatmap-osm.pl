@@ -4,6 +4,12 @@
 # heatmap.pl
 #
 #===============================================================================
+# May 4, 2020: minor updates by Ramon F. Kolb
+# - changed the output format from "pure" CSV to OSM/Leaflet styled arrays
+# - to avoid cluttering of the heatmap, discard the bottom 3% of samples
+# - All changes are documented and marked with "RFK Edit" in the comments
+# Lots of thanks to Ted Sluis for this awesome utility!
+#===============================================================================
 BEGIN {
 	use strict;
 	use POSIX qw(strftime);
@@ -337,7 +343,9 @@ my %pos;
 my $lat;
 my $lon;
 open(my $outputdata, '>', "$outputdatafile") or die "Could not open file '$outputdatafile' $!";
-#print $outputdata "\"weight\";\"lat\";\"lon\"";
+# RFK Edit: replace the original header line with a JS array initialization
+# Original line was:
+# print $outputdata "\"weight\";\"lat\";\"lon\"";
 print $outputdata "var addressPoints = [";
 # Read input files
 foreach my $filename (@files) {
@@ -448,21 +456,27 @@ if ($max_weight > $highest_weight){
 $counter = 0;
 foreach my $sort (reverse sort keys %sort) {
 	my ($weight,$lat,$lon) = split(/,/,$sort);
-#	last if ($weight < 3);
+	
+	# RFK edit: discard bottom 3% of samples to avoid cluttering the heatmap:
+	# Original line was:
+	#	last if ($weight < 3);
 	last if ( ($weight < 3) || ($weight < .03 * $highest_weight));
 	$weight = int(($max_weight / $highest_weight * $weight) + ($lowest_weight * $max_weight / $highest_weight * (($highest_weight - $weight) / $highest_weight)) ); 
-	# $weight = ($max_weight / $highest_weight * $weight) + ($lowest_weight * $max_weight / $highest_weight * (($highest_weight - $weight) / $highest_weight)) + 1; 
 	$counter++;
 	# stop after the maximum number of heatmap positions is reached:
 	last if ($counter >= $max_positions);
 	# print output to file:
-#	print $outputdata "\n\"$weight\";\"$lat\";\"$lon\"";
-# rfk edit
-# format is [-37.8839, 175.3745188667, "571"],
+	# Original line was:
+	#	print $outputdata "\n\"$weight\";\"$lat\";\"$lon\"";
+	# rfk edit
+	# format is [-37.8839, 175.3745188667, "571"],
         print $outputdata "\n[$lat , $lon, \"$weight\"],";
 
 }
+# RFK Edit: write an extra line to close the JS array.
+# The following 1 line was inserted:
 print $outputdata "\n];";
+
 close($outputdata);
 chmod(0666,$outputdata);
 LOG("$counter rows with heatmap position data processed!","I");
