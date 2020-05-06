@@ -39,7 +39,7 @@
 # Now create the history file:
 	# print HTML headers first:
 	printf "<html>\n\t<head></head>\n\t<body>\n\t\t" > $HISTFILE
-	printf "<p style=\"font: 16px/1.4 'Helvetica Neue', Arial, sans-serif; font-size:medium; text-align: center\">Historical data: <a href=\"index.html\" target=\"_top\">Latest</a> -  " >>$HISTFILE
+	printf "<p style=\"font: 16px/1.4 'Helvetica Neue', Arial, sans-serif; font-size:medium; text-align: center\">Historical data: " >>$HISTFILE
 	# First write a link to the latest heatmap:
 	printf "<a href=\"index.html\" target=\"_top\">Latest</a> - " >>$HISTFILE
 	# loop through the existing files. Note - if you change the file format, make sure to yodate the arguments in the line
