@@ -12,6 +12,8 @@ var heat = L.heatLayer(addressPoints, {minOpacity: 1, radius: 20, maxZoom: 10, b
 
 </script>
 <iframe src="history.html" class="history" allowtransparency="true" frameborder="0" scrolling="0" width="1000"></iframe>
+<div style="text-align:center; font: 8px">Heatmap based on <a href="https://github.com/kx1t/ADSB-heatmap" target="_blank">KX1T's heatmap</a> 
+Open Source project.</div>
 <iframe class="ghbtns" src="leaflet-heat.html"
   allowtransparency="true" frameborder="0" scrolling="0" width="0" height="0"></iframe>
 </body>
