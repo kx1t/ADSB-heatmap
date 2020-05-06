@@ -34,7 +34,7 @@
 	INDX=$HTMLDIR/index-`date -d $HEATDATE +"%y%m%d"`.html
 
 # Call heatmap-osm.pl with the right arguments. The output will go to the HTML directory in a file called heatmapdata-200504.js
-	$HEATDIR/heatmap-osm.pl -output $HTMLDIR -degrees 3.5 -resolution 10000 -override -file heatmapdata-`date -d $HEATDATE +"%y%m%d"`.js  -filemask dump*`date -d $HEATDATE +"%y%m%d"`.txt
+	$HEATDIR/heatmap-osm.pl -output $HTMLDIR -degrees 3.5 -maxpositions 200000 -resolution 10000 -override -file heatmapdata-`date -d $HEATDATE +"%y%m%d"`.js  -filemask dump*`date -d $HEATDATE +"%y%m%d"`.txt
 
 # Now create the history file:
 	# print HTML headers first:
