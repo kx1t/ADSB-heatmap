@@ -41,7 +41,7 @@
 	printf "<html>\n\t<head></head>\n\t<body>\n\t\t" > $HISTFILE
 	printf "<p style=\"font: 16px/1.4 'Helvetica Neue', Arial, sans-serif; font-size:medium; text-align: center\">Historical data: " >>$HISTFILE
 	# First write a link to the latest heatmap:
-	printf "<a href=\"index.html\" target=\"_top\">Latest</a> - " >>$HISTFILE
+	printf "<a href=\"index.html\" target=\"_top\">Latest</a>" >>$HISTFILE
 	# loop through the existing files. Note - if you change the file format, make sure to yodate the arguments in the line
 	# right below. Right now, it lists all files that have the index-20* format (index200504.html, etc.), and then
 	# picks the newest 7, reverses the strings to capture the characters 6-11 from the right, which contain the date (200504)
@@ -49,7 +49,7 @@
 	# This is not really Y21 compliant, but someone can fix that in 80 years from now if they want :) 
 	for d in `ls -1 $HTMLDIR/index-20*|tail -7|rev|cut -c6-11|rev`
 	do
-        	printf "<a href=\"%s\" target=\"_top\">%s</a> - " "index-`date -d $d +\"%y%m%d\"`.html" "`date -d $d +\"%d-%b-%Y\"`" >> $HISTFILE
+        	printf " - <a href=\"%s\" target=\"_top\">%s</a>" "index-`date -d $d +\"%y%m%d\"`.html" "`date -d $d +\"%d-%b-%Y\"`" >> $HISTFILE
 	done
 	printf "\n\t\t</p>\n\t</body>\n</html>" >> $HISTFILE
 
