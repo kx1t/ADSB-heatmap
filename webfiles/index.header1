@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KX1T ADS-B 1090 MHz Heatmap</title>
+    <title>ADS-B 1090 MHz Heatmap</title>
     <link rel="stylesheet" href="leaflet.css" />
     <script src="leaflet.js"></script>
     <style>
@@ -15,5 +15,9 @@
 </head>
 <body>
 
-<div style="text-align:center"><h2>KX1T ADS-B 1090 MHz Heatmap</h2></div>
+<div style="text-align:center">
+	<h2>ADS-B 1090 MHz Heatmap</h2>
+	<p style=text-align:center>Aircraft flight patterns from my <a href=".." target="_top">ADS-B Flight Receiver</a>
+	</p>
+</div>
 
