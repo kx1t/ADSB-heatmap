@@ -2,9 +2,11 @@
 Collection of scripts and modifications to sock30003's heatmap utility to write a daily heatmap based on OpenStreetMap.
 Copyright 2020 by Ramon F. Kolb - Licensed under GPL3.0 - see separate license file.
 
+For an example, see http://ramonk.net/heatmap
+
 ## Attributions, inclusions, and prerequisites
 
-1. You must have a Raspberry Pi with a working version of dump1090, dump1090-fa, dump1090-mutability, or the equivalent dump978 versions installed. If you don't, stop right here. It makes no sense to continue unless you understand the basic functions of the ADSB receiver for Raspberry Pi
+1. You must have a Raspberry Pi with a working version of dump1090, dump1090-fa, dump1090-mutability, or the equivalent dump978 versions installed. If you don't have this, stop right here. It makes no sense to continue unless you understand the basic functions of the ADSB receiver for Raspberry Pi
 2. The scripts in this repository use a slightly modified version of https://github.com/tedsluis/dump1090.socket30003, used and distributed under the GPLv3.0 license. 
 3. The heatmap is based on a https://github.com/Leaflet/Leaflet.heat, which is a plugin to http://leafletjs.com. Leaflet.heat is used and distributed under the BSD 2-Clause "Simplified" License.
 4. The heatmap is rendered on OpenStreetMaps. 
@@ -16,15 +18,15 @@ What does this mean for you? Follow the installation instructions and you should
 Follow the following steps in order.
 
 ### Prerequisites
-1. These instructions assume that you already have a relatively standard installation of dump1090, dump1090-fa, dump1090-mutability, or the equivalent dump978 installed on your Raspberry Pi. If you don't, Google "FlightAware feeder", "Radarbox24 feeder", or something similar to get started. Get a RPi 3B+ or 4, an RTL-SDR dongle, an antenna, and come back here when you can access a map with aircraft flying over your home.
+1. These instructions assume that you already have a relatively standard installation of dump1090, dump1090-fa, dump1090-mutability, or the equivalent dump978 on your Raspberry Pi. If you don't have this, Google "FlightAware feeder", "Radarbox24 feeder", or something similar to get started. Get a RPi 3B+ or 4, an RTL-SDR dongle, an antenna, and come back here when you can access a map with aircraft flying over your home.
 2. You should feel somewhat comfortable installing and configuring software on a Raspberry Pi or a similar Linux system using Github. You will be making modifications to your system, and there is a chance you screw things up. You do so at your own risk.
 
 ### Install Socket30003
-Ted Sluis wrote a great information package that is well usable, but it assumes that you run a specially modified version of dump1090-mutability to render the maps. If you don't feel comfortable replacing your existing version of dump1090 with his version, you're here at the right spot.
+Ted Sluis wrote a great set of Perl scripts to collect data and render a heatmap, but it assumes that you run a specially modified version of dump1090-mutability to render the maps. If you don't feel comfortable replacing your existing version of dump1090 with his version, you're here at the right spot. We will use his scripts, but render the heatmap separately using OpenStreetMap.
 
 To install Socket30003, [go here](https://github.com/tedsluis/dump1090.socket30003) and follow the installation instructions from the start **UP TO INCLUDING** the section about adding a [Cron Job](https://github.com/tedsluis/dump1090.socket30003#add-socket30003pl-as-a-crontab-job).
 
-If you want my scripts to run as-is, then it will assume that you DON'T change the location or format of the log files. This means, that they are written as `/tmp/dump1090_127_0_0_1-yymmdd.txt` and `....log`.
+If you want my scripts to run as-is, then there instructions will assume that you DON'T change the location or format of the log files. This means, that they are written as `/tmp/dump1090_127_0_0_1-yymmdd.txt` and `....log`.
 
 ### Install the scripts from this repository
 1. Clone the repository. Log into you Raspberry Pi and give the following commands:
@@ -93,8 +95,8 @@ var map = L.map('map').setView([42.405, -71.167], 9);
 ```
 The format is `....setView([lat, long], zoom);`. Put in your own approximate longitude/latitude. You can zoom in/out the default view by changing the `zoom` parameter.
 
-# Running the scripts
-Normally, this should be 'set it and forget it'. However, you can always run the scripts manually:
+# Running the scripts manually
+If you have made it through here, the heatmap should start rendering automatically every day at midnight. However, you can always run the scripts manually:
 
 ## heat2osm.sh
 The script name stands for __**h**eat**m**ap to **O**pen**S**treet**M**ap__.
@@ -134,3 +136,4 @@ When you are done editing, exit and save with `CTRL-x`.
 # Seeing your heatmap
 Once you have rendered at least 1 heatmap, you can find it at `http://<address_of_rpi>/heatmap`.
 Replace `<address_of_rpi>` with whatever the address is you normally use to get to the SkyAware or Dump1090 map.
+For reference, see http://ramonk.net/heatmap
