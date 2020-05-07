@@ -75,6 +75,9 @@ nano heat2osm.sh
 
 - Right on top, you see `HTMLDIR`. This should contain your heatmap directory name. If you have a different name, change it there
 - Similarly, change the `HEATDIR` to the location of sock30003. Again, if you followed the instructions when installing Socket30003, you shouldn't have to change anything.
+- By default, the top of the map shows `Aircraft flight patterns from my ADS-B Flight Receiver` with a link to your SkyAware website located one directory up from the heatmap directory.
+  - To change "my" into something else (like "Ramón KX1T's"), change `ME=my` to `ME="Ram&oacute;n KX1T\'s"`. Make sure to escape any quotes or special characters you want to print by using a `\` in front of them.
+  - To change the landing directory for your SkyAware or any other landing page you want to configure, change `LANDING=".."` to your desired website. For example, `LANDING="https://flightaware.com/adsb/stats/user/ramonk"`
 - Exit with `CTRL-x` and save the changes if needed.
 
 ### Create a cron job
