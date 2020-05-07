@@ -5,7 +5,7 @@
 # Usage: ./heat2osm.sh [date]
 #
 # Copyright 2020 Ramon F. Kolb - licensed under the terms and conditions
-# of GPLv3. The terms and conditions of this license are included with the Github 
+# of GPLv3. The terms and conditions of this license are included with the Github
 # distribution of this package, and are also available here:
 # https://github.com/kx1t/ADSB-heatmap/
 #
@@ -16,11 +16,20 @@
 # OpenStreetMap: https://www.openstreetmap.org
 # These packages may incorporate other software and license terms.
 
+# -----------------------------------------------------------------------------------
+# Feel free to make changes to the variables between these two lines. However, it is
+# STRONGLY RECOMMENDED to RTFM! See README.md for explanation of what these do.
 
-# start defining the input and output directories and file names
+# These are the input and output directories and file names
 	HTMLDIR=/usr/share/dump1090-fa/html/heatmap/
 	HEATDIR=/home/pi/sock30003/
 	HISTFILE=$HTMLDIR/history.html
+
+# These are some variables that define the SkyAware landing page
+# and your name for the title of the webpage
+	ME="my"
+	LANDING=".."
+# -----------------------------------------------------------------------------------
 
 # get the friendly name for the target date from the command line, or, is there isn't any, we'll go for "yesterday".
 	if [[ ! -z "$1" ]]
@@ -55,7 +64,9 @@
 
 # Now stitch the index file together:
 	cat $HTMLDIR/index.header1 > $INDX
-	printf "<p style="text-align:center">Heatmap for %s</p>" "`date -d $HEATDATE +\"%d-%b-%Y\"`" >>$INDX
+	printf "\t<p style=text-align:center>Aircraft flight patterns from %s <a href=\"%s\" target=\"_top\">ADS-B Flight Receiver</a>\n\t</p>\n" $ME $LANDING >>$INDX
+
+	printf "\t<p style="text-align:center">Heatmap for %s, generated on %s" "`date -d $HEATDATE +\"%d-%b-%Y\"`" "`date +\"%d-%b-%y %T %Z\"`" >>$INDX
 	cat $HTMLDIR/index.header2 >> $INDX
 	printf "<script src=\"%s\"></script>\n" "heatmapdata-`date -d $HEATDATE +\"%y%m%d\"`.js" >> $INDX
 	cat $HTMLDIR/index.footer >> $INDX
