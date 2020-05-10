@@ -29,6 +29,10 @@
 # and your name for the title of the webpage
 	ME="my"
 	LANDING=".."
+
+# This indicates (up to) how many days are shown in the  history below the map
+	HISTTIME=7
+
 # -----------------------------------------------------------------------------------
 
 # get the friendly name for the target date from the command line, or, is there isn't any, we'll go for "yesterday".
@@ -53,10 +57,10 @@
 	printf "<a href=\"index.html\" target=\"_top\">Latest</a>" >>$HISTFILE
 	# loop through the existing files. Note - if you change the file format, make sure to yodate the arguments in the line
 	# right below. Right now, it lists all files that have the index-20* format (index200504.html, etc.), and then
-	# picks the newest 7, reverses the strings to capture the characters 6-11 from the right, which contain the date (200504)
+	# picks the newest 7 (or whatever HISTTIME is set to), reverses the strings to capture the characters 6-11 from the right, which contain the date (200504)
 	# and reverses the results back so we get only a list of dates in the format yymmdd.
 	# This is not really Y21 compliant, but someone can fix that in 80 years from now if they want :) 
-	for d in `ls -1 $HTMLDIR/index-20*|tail -7|rev|cut -c6-11|rev`
+	for d in `ls -1 $HTMLDIR/index-20* | tail -$HISTTIME | rev | cut -c6-11 | rev`
 	do
         	printf " - <a href=\"%s\" target=\"_top\">%s</a>" "index-`date -d $d +\"%y%m%d\"`.html" "`date -d $d +\"%d-%b-%Y\"`" >> $HISTFILE
 	done
@@ -66,7 +70,7 @@
 	cat $HTMLDIR/index.header1 > $INDX
 	printf "\t<p style=text-align:center>Aircraft flight patterns from %s <a href=\"%s\" target=\"_top\">ADS-B Flight Receiver</a>\n\t</p>\n" $ME $LANDING >>$INDX
 
-	printf "\t<p style="text-align:center">Heatmap for %s, generated on %s" "`date -d $HEATDATE +\"%d-%b-%Y\"`" "`date +\"%d-%b-%y %T %Z\"`" >>$INDX
+	printf "\t<p style="text-align:center">Heatmap for %s, generated on %s" "`date -d $HEATDATE +\"%a %d-%b-%Y\"`" "`date +\"%d-%b-%y %T %Z\"`" >>$INDX
 	cat $HTMLDIR/index.header2 >> $INDX
 	printf "<script src=\"%s\"></script>\n" "heatmapdata-`date -d $HEATDATE +\"%y%m%d\"`.js" >> $INDX
 	cat $HTMLDIR/index.footer >> $INDX
