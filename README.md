@@ -57,6 +57,7 @@ If you followed the `socket30003` install instructions to the letter and you did
 
 ```
 cp scripts/* /home/pi/sock30003
+chmod a+x /home/pi/*.sh /home/pi/*.pl
 ```
 
 ### Copy the web files to the heatmap directory
