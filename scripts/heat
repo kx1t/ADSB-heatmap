@@ -1,0 +1,8 @@
+</p></div>
+
+<div id="map" style="text-align:center"></div>
+
+<script src="HeatLayer.js"></script>
+
+<script src="leaflet-heat.js"></script>
+
