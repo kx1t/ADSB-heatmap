@@ -1,6 +1,6 @@
 # ADSB-heatmap
 Collection of scripts and modifications to socket30003's heatmap utility to write a daily heatmap based on OpenStreetMap.
-Copyright 2020 by Ramon F. Kolb - Licensed under GPL3.0 - see separate license file.
+Copyright 2020 by Ramón F. Kolb - Licensed under GPL3.0 - see separate license file.
 
 For an example, see http://ramonk.net/heatmap
 
