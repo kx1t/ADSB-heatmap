@@ -1,5 +1,5 @@
 #!/bin/bash
-# HEAT2OSM - a Bash shell script to render heatmaps from modified sock30003
+# HEAT2OSM - a Bash shell script to render heatmaps from modified socket30003
 # heatmap data
 #
 # Usage: ./heat2osm.sh [date]
@@ -22,7 +22,7 @@
 
 # These are the input and output directories and file names
 	HTMLDIR=/usr/share/dump1090-fa/html/heatmap/
-	HEATDIR=/home/pi/sock30003/
+	HEATDIR=/home/pi/socket30003/
 	HISTFILE=$HTMLDIR/history.html
 
 # These are some variables that define the SkyAware landing page
