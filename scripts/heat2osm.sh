@@ -43,7 +43,7 @@
 		HEATDATE=yesterday
 	fi
 
-# we are generating an index file with the date embedded, for example May 4, 20202 = index-200504.html
+# we are generating an index file with the date embedded, for example May 4, 2020 = index-200504.html
 	INDX=$HTMLDIR/index-`date -d $HEATDATE +"%y%m%d"`.html
 
 # Call heatmap-osm.pl with the right arguments. The output will go to the HTML directory in a file called heatmapdata-200504.js
