@@ -1,5 +1,5 @@
 # ADSB-heatmap
-Collection of scripts and modifications to sock30003's heatmap utility to write a daily heatmap based on OpenStreetMap.
+Collection of scripts and modifications to socket30003's heatmap utility to write a daily heatmap based on OpenStreetMap.
 Copyright 2020 by Ramon F. Kolb - Licensed under GPL3.0 - see separate license file.
 
 For an example, see http://ramonk.net/heatmap
@@ -52,12 +52,12 @@ sudo chmod a+rwx /usr/share/dump1090-fa/html/heatmap
 
 Remember what you **heatmap directory** is, you will need to use it a few times below. For the rest of the installation instructions, we're assuming it is `/usr/share/dump1090-fa/html/heatmap`. You will have to substitute your **heatmap directory** name if it is different.
 
-### Copy the utilities to the sock30003 directory
-If you followed the `socket30003` install instructions to the letter and you didn't change any directories, then `socket30003` is installed in `/home/pi/sock30003`. We'll copy the scripts there.
+### Copy the utilities to the socket30003 directory
+If you followed the `socket30003` install instructions to the letter and you didn't change any directories, then `socket30003` is installed in `/home/pi/socket30003`. We'll copy the scripts there.
 
 ```
-cp scripts/* /home/pi/sock30003
-chmod a+x /home/pi/sock30003/*.sh /home/pi/sock30003/*.pl
+cp scripts/* /home/pi/socket30003
+chmod a+x /home/pi/socket30003/*.sh /home/pi/socket30003/*.pl
 ```
 
 ### Copy the web files to the heatmap directory
@@ -71,12 +71,12 @@ cp webfiles/* /usr/share/dump1090-fa/html/heatmap
 If all the directories and file names exactly match up with what we wrote above, you can skip this step. If not, then let's make sure that the script can still find everything.
 
 ```
-cd /home/pi/sock30003
+cd /home/pi/socket30003
 nano heat2osm.sh
 ```
 
 - Right on top, you see `HTMLDIR`. This should contain your heatmap directory name. If you have a different name, change it there
-- Similarly, change the `HEATDIR` to the location of sock30003. Again, if you followed the instructions when installing Socket30003, you shouldn't have to change anything.
+- Similarly, change the `HEATDIR` to the location of socket30003. Again, if you followed the instructions when installing Socket30003, you shouldn't have to change anything.
 - By default, the top of the map shows `Aircraft flight patterns from my ADS-B Flight Receiver` with a link to your SkyAware website located one directory up from the heatmap directory.
   - To change "my" into something else (like "Ramón KX1T's"), change `ME=my` to `ME="Ram&oacute;n KX1T\'s"`. Make sure to escape any quotes or special characters you want to print by using a `\` in front of them.
   - To change the landing directory for your SkyAware or any other landing page you want to configure, change `LANDING=".."` to your desired website. For example, `LANDING="https://flightaware.com/adsb/stats/user/ramonk"`
@@ -93,7 +93,7 @@ If it asks you which editor to use, select `nano`.
 Then add the following line to the end of the file. Make sure that you check that you're using the correct directory:
 
 ```
-0 0 * * *    /home/pi/sock30003/heat2osm.sh
+0 0 * * *    /home/pi/socket30003/heat2osm.sh
 ```
 
 Exit with `CTRL-x` and save the changes.
