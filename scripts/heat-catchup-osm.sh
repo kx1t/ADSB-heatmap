@@ -16,13 +16,13 @@
 # These packages may incorporate other software and license terms.
 
 # The following determines the location of HEAT2OSM. You can change this into a hard coded oath
-# if you want. If you leave it to be "./", it assumes that HEAT2OSM is invoked from the same directory as
+# if you want. If you make it to be "./", it assumes that HEAT2OSM is invoked from the same directory as
 # this script.
 
-	HEATPATH=./
+	HEATPATH=/home/pi/socket30003/
 
-# The following assumes that you didn't change the default log file location and format when you installed
-# invoked sock30003. If you did change something, you will have to update the line below.
+# The following assumes that you didn't change the default log file location and format when you installed and
+# invoke socket30003. If you did change something, you will have to update the line below.
 # specifically, the line lists all files that conform to /tmp/dump10*.txt, and then
 # selects the rightmost characters 5-10 only. These contain the date of the file in format 'yymmdd'.
 # This script then recursively calls HEAT2OSM with each of the dates.
