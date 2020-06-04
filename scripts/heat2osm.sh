@@ -60,7 +60,7 @@
 	# picks the newest 7 (or whatever HISTTIME is set to), reverses the strings to capture the characters 6-11 from the right, which contain the date (200504)
 	# and reverses the results back so we get only a list of dates in the format yymmdd.
 	# This is not really Y21 compliant, but someone can fix that in 80 years from now if they want :) 
-	for d in `ls -1 $HTMLDIR/index-20* | tail -$HISTTIME | rev | cut -c6-11 | rev`
+	for d in `ls -r -1 $HTMLDIR/index-20* | head -$HISTTIME | rev | cut -c6-11 | rev`
 	do
         	printf " - <a href=\"%s\" target=\"_top\">%s</a>" "index-`date -d $d +\"%y%m%d\"`.html" "`date -d $d +\"%d-%b-%Y\"`" >> $HISTFILE
 	done
